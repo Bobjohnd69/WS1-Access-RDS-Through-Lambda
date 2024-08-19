@@ -11,7 +11,7 @@ Chúng ta sẽ chạy thử để xem hàm có hoạt động như mong đợi h
 
 1.Vào Test, chọn **Create new event** và nhập vào tên của bài kiểm tra này.`testAddUser`
 
- ![Test Lambda Function](/images/2/2.5.1.png)
+ ![Test Lambda Function](../images/2/2.5.1.png)
 
 2.Ở **Event JSON**, chèn vào đoạn JSON mẫu này:
 ```
@@ -36,15 +36,15 @@ Chúng ta sẽ chạy thử để xem hàm có hoạt động như mong đợi h
   ]
 }
 ```
- ![Test Lambda Function](/images/2/2.5.2.png)
+ ![Test Lambda Function](../images/2/2.5.2.png)
 
 Điều chỉnh *body* và/hoặc *awsRegion* phù hợp với bài lab của mình.
 
 3.Kéo lên và nhấn **Save** rồi nhấn **Test**
 
- ![Test Lambda Function](/images/2/2.5.3.png)
+ ![Test Lambda Function](../images/2/2.5.3.png)
 
 4.Nếu mọi thứ thành công thì sẽ hiện lên thông báo này:
 
- ![Test Lambda Function](/images/2/2.5.4.png)
+ ![Test Lambda Function](../images/2/2.5.4.png)
 

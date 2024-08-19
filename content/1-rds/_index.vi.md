@@ -38,7 +38,7 @@ Khi tạo một cơ sỏ dữ liệu production. thì bạn nên lựa chọn "P
 
 6.Kéo xuống đến Additional configuration. Ở phần Initial database name. Cho cơ sở dữ liệu mình một cái tên, ghi nhớ cái tên này cho phần tiếp theo của bài lab. `myDB`
 
-  ![Create Database](/images/1/1.5.png)
+  ![Create Database](../images/1/1.5.png)
 
 7. Cuối cùng, ấn vào Create Database. Rồi đợi cho đến khi trạng thái của cơ sở dữ liệu của mình là "Available".
 

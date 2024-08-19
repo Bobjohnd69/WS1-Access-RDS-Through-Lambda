@@ -1,35 +1,31 @@
 +++
-title = "Triển khai Ứng dụng ShareNote với Auto Scaling Group"
-date = 2021
+title = "Truy cập tài nguyên AWS qua Lambda"
+date = 2024
 weight = 1
 chapter = false
 +++
 
-# Triển khai Ứng dụng ShareNote với Auto Scaling Group
+# Truy cập tài nguyên AWS qua Lambda
 
 #### Tổng quan
 
-Ở bài thực hành này, chúng ta sẽ tiến hành việc triển khai ứng dụng với **Auto Scaling Group** nhằm đảm bảo khả năng co giãn của ứng dụng đó theo nhu cầu của người truy cập.
-Thêm vào đó, chúng ta cũng sẽ triển khai **Load Balancer** nhằm cân bằng tải và điều phối các yêu cầu truy cập từ phía người dùng đến Application Tier của chúng ta.
+Ở bài thực hành này, chúng ta sẽ tìm hiểu cách truy vấn vào tài nguyên cơ sở dữ liệu RDS sử dụng **Lambda** qua **RDS Proxy**. Sử dụng **Simple Queue Service** (*Dịch vụ hàng đợi đơn giản*) để gọi hàm Lambda ấy.
 
-Hãy chắc chắn rằng bạn đã xem qua tài liệu [Triển khai Ứng dụng ShareNote trên Máy ảo Windows/AmazonLinux](https://000004.awsstudygroup.com/) và nắm được cách triển khai ứng dụng trên máy ảo. Chúng ta sẽ cần sử dụng máy ảo được triển khai ShareNote cho việc triển khai đồng loạt và mở rộng trong Auto Scaling Group.
 
-#### Auto Scaling Group
-**Auto Scaling Group** (*nhóm co giãn tự động*) là một nhóm các EC2 Instance. Nhóm này có thể co giãn số lượng của các EC2 Instance thành viên theo **chính sách co giãn** (*scaling policy*) mà bạn đặt ra.
+#### Lambda
+**Lambda**: Là dịch vụ tính toán phi máy chủ. Bạn chỉ cần nạp code vào **Lambda** và **Lambda** sẽ tự động giải quyết việc quản lý tài nguyên tính toán, dự trữ dung lượng,... Và bạn chỉ cần phải trả phí cho thời gian dịch vụ **Lambda** xử lý tính toán, bạn sẽ không phải chi trả khi **Lambda** không được gọi.
 
-#### Launch Template
-**Launch Template** (*khuôn mẫu khởi tạo*) là một tính năng giúp bạn tạo khuôn mẫu cho việc khởi tạo các EC2 Instance. Nhờ thế, bạn có thể quy trình hóa và đơn giản hóa công tác khởi tạo các EC2 Instance cho dịch vụ **Auto Scaling** (*co giãn tự động*).
+#### RDS Proxy
+**RDS Proxy**: Đứng trung gian giữa cơ sở dữ liệu RDS và Lambda. **RDS Proxy** có nhiệm vụ kiểm soát và quản lý các truy vấn vào cơ sở dữ liệu.
 
-#### Load Balancer
-**Load Balancer** (*máy cân bằng tải*) là một công cụ có thể phân phối lưu lượng dữ liệu được trao đổi tới các tài nguyên AWS (cụ thể trong bài lab này là các EC2 Instances) trong **Target Group**.
+#### Simple Queue Service
+**Simple Queue Service** (*Dịch vụ hàng đợi đơn giản*): Là dịch vụ giúp ta truyền, chứa và nhận các tin nhắn cho các bộ phận khác trong hệ thống. Chúng ta sẽ sử dụng **SQS** để gọi hàm Lambda.
 
-#### Target Group
-**Target Group** (*nhóm mục tiêu*) là một nhóm những thành phần tài nguyên AWS sẽ nhận lưu lượng dữ liệu được phân phối và truyền tải bởi **Load Balancer**.
+  ![Diagram](../images/0/0.1.png)
 
 #### Nội dung:
-1. [Các bước chuẩn bị](1-prerequisite)
-2. [Khởi tạo Launch Template](2-launch-template)
-3. [Khởi tạo Target Group](3-target-group)
-4. [Khởi tạo Load Balancer](4-load-balance)
-5. [Khởi tạo Auto Scaling Group](5-asg) 
-6. [Kiểm tra kết quả](6-testing)
+1. [Khởi tạo RDS](1-rds)
+2. [Khởi tạo Lambda](2-lambda)
+3. [Khởi tạo SQS](3-sqs)
+4. [Kiểm tra kết quả](4-testing)
+5. [Dọn dẹp tài nguyên](5-clean-up)
