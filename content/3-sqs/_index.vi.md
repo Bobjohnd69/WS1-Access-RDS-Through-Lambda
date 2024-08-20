@@ -24,12 +24,12 @@ Chúng ta sẽ tạo một **SQS** đơn giản để có thể gọi hàm lambd
 
   Giữ nguyên các định dạng còn lại và ấn **Create Queue**
 
-  ![Create SQS](../images/3/3.7.png)
+  ![Create SQS](/images/3/3.7.png)
 
 4.Quay lại hàm Lambda, ấn vào **Add Trigger**
 
-  ![Create SQS](../images/3/3.5.png)
+  ![Create SQS](/static/images/3/3.5.png)
 
   Trong **Trigger configuration**, ở ô **SQS queue** chọn **SQS** mình vừa mới tạo. Giữ nguyên những thứ còn lại và ấn **Add**
 
-  ![Create SQS](../images/3/3.6.png)
+  ![Create SQS](images/3/3.6.png)
