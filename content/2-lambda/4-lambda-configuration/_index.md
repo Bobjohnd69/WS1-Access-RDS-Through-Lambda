@@ -32,7 +32,7 @@ Key của bốn khóa này phải chính xác với bên code do chúng case-sen
 {{% /notice%}}
   Rồi cuối cùng nhấn vào **Save**
 
-  ![Lambda Configuration](../../images/2/2.4.4.png)
+  ![Lambda Configuration](../../images/2/2.4.7.png)
 
 3.Cũng ở trong **Configuration**, chọn mục Permission. Ở phần **Execution role**, nhấn vào **Edit**
 
