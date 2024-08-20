@@ -11,16 +11,16 @@ Bây giờ chúng ta sẽ quay lại hàm Lambda của chúng ta và bắt đầ
 
 1.Sau khi quay lại hàm **Lambda**, kéo xuống **Runtime settings** và nhấn vào **Edit**.
 
-  ![Lambda Configuration](../../images/2/2.4.1.png)
+  ![Lambda Configuration](../../../images/2/2.4.1.png)
   - Chỉnh **Runtime** thành `Python 3.12`
   - Trong **Handler** nhập `lambda-function.lambda_handler` để khi được gọi thì **Lambda** sẽ chạy tập tin *lambda-function* với hàm *lambda_handler*.
   - Nhấn vào Save
 
-  ![Lambda Configuration](../../images/2/2.4.2.png)
+  ![Lambda Configuration](../../../../images/2/2.4.2.png)
 
 2.Vào **Configuration**, nhấn vào mục **Enviroment variables** và chọn **Edit**
 
-  ![Lambda Configuration](../../images/2/2.4.3.png)
+  ![Lambda Configuration](../images/2/2.4.3.png)
   Sau đó nhấn vào **Add enviroment variable** để thêm bốn biến môi trường với các giá trị sau:
   - `DB_NAME`: Tên cơ sở dữ liệu bạn đưa.
   - `PASSWORD`: Mật khẩu của cơ sở dữ liệu

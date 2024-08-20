@@ -14,15 +14,15 @@ pre = "<b>2. </b>"
 
 2.Bật **Visual Studio Code** (Hoặc IDE nào bạn quen dùng), vào phần **file** và chọn **Open Folder**
 
-![Add code into lambda function](../../images/2/2.2.2.png)
+![Add code into lambda function](../images/2/2.2.2.png)
 
 3.Chọn thư mục mình vừa mới tạo và ấn **Select Folder**
 
-![Add code into lambda function](../../images/2/2.2.3.png)
+![Add code into lambda function](../../../images/2/2.2.3.png)
 
 4.Sau đó, tạo một tập tin `lambda-function.py` và một thư mục `package`.
 
-![Add code into lambda function](../../images/2/2.2.4.png)
+![Add code into lambda function](../../../../images/2/2.2.4.png)
 
 5.Trong tập tin `lambda-function.py`, chèn vào bên trong đoạn code này:
 

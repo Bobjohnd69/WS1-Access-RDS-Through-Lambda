@@ -24,15 +24,15 @@ Trước khi chỉnh sửa cấu hình của hàm Lambda, chúng ta sẽ tạo m
   - Trong **Use Case**, chọn dịch vụ **Lambda**
   - Sau đó ấn vào **Next**
 
-  ![IAM roles creation](../../images/2/2.3.3.png)
+  ![IAM roles creation](../images/2/2.3.3.png)
 
 4.Ở trong **Add permissions**, chúng ta sẽ cấp vào vai trò của chúng ta hai quyền:
   - `AWSLambdaSQSQueueExecutionRole`: Để cấp quyền sử dụng dịch vụ **SQS**.
   - `AWSLambdaVPCAccessExecutionRole`: Để cấp quyền lambda sử dụng tài nguyên trong VPC.
 
-  ![IAM roles creation](../../images/2/2.3.4.png)
+  ![IAM roles creation](../../../images/2/2.3.4.png)
 
-  ![IAM roles creation](../../images/2/2.3.5.png)
+  ![IAM roles creation](../../../../images/2/2.3.5.png)
 
 5.Ở phần **Role details**:
   - Cung cấp một cái tên cho **Role name**. `sqs-lambda-rds-role`.
