@@ -1,11 +1,9 @@
 +++
-title = "Truy cập tài nguyên AWS qua hàm Lambda"
+title = "RDS Access through Lambda"
 date = 2024
 weight = 1
 chapter = false
 +++
-
-# Truy cập tài nguyên AWS qua Lambda
 
 #### Tổng quan
 
