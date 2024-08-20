@@ -13,7 +13,7 @@ Chúng ta sẽ gửi một tin nhắn từ **SQS**, rồi sau đó sử dụng d
 
 1.Vào **SQS** và nhấn **Send and recieve messages**
 
-  ![Test Application](../../images/4/4.1.png)
+  ![Test Application](../images/4/4.1.png)
 
 2.Trong **Send message**, chèn JSON này vào ô **Message body** vầ nhấn vào **Send message**
 
