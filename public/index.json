@@ -1,90 +1,90 @@
 [
 {
-	"uri": "/2-lambda/1-lambda-rds-proxy/",
+	"uri": "//localhost:1313/2-lambda/1-lambda-rds-proxy/",
 	"title": "Create Lambda And RDS Proxy",
 	"tags": [],
 	"description": "",
 	"content": "Khởi tạo Lambda và RDS Proxy 1.Chọn cơ sở dữ liệu mình vừa tạo và ấn vào Action. Trong Action chọn Set up Lambda connection\n2.Trong Select Lambda function, chọn Create new function. Sau đó cho hàm của mình một cái tên. lambda-add-user-function.\n3.Kéo xuống đến RDS Proxy, chọn Create new proxy, ở ô Username và Password điền username và password của cơ sở dữ liệu bạn vừa tạo.\n4.Kéo xuống và ấn Set up\nỞ Connection summary bạn có thể thấy AWS sẽ tự động tạo sự nhóm bảo mật để liên kết từ Lambda đến RDS-Proxy, rồi từ RDS-Proxy sẽ truy cập vào RDS. Nếu như bạn sử dụng VPC tự tạo, hãy kiểm tra xem mình đã chọn đúng VPC, DB subnet group.\n5.Vào phần Proxies, ấn vào proxies vừa được tạo.\n6.Kéo xuống Proxy endpoints và ghi nhớ endpoint cho phần sau của bài lab\n"
 },
 {
-	"uri": "/1-rds/",
+	"uri": "//localhost:1313/1-rds/",
 	"title": "Create RDS Instance",
 	"tags": [],
 	"description": "",
 	"content": "Create RDS Instance Ấn vào thanh tìm kiếm và chọn dịch vụ RDS 2.Trong RDS. Chọn Database rồi sau đó ấn vào \u0026ldquo;Create Database\u0026rdquo;\nTrong Engine options, chọn MySQL Giữ nguyên những thứ khác, ở phần Templates, chọn mức Free tier. Khi tạo một cơ sỏ dữ liệu production. thì bạn nên lựa chọn \u0026ldquo;Production\u0026rdquo; và lực chọn \u0026ldquo;Multi-AZ DB instance\u0026rdquo; để bảo vệ dữ liệu của bạn phòng khi cơ sở dữ liệu chinh bị mất.\n5.Ở phần Settings, chúng ta sẽ làm những việc như sau:\nDB instance identifier: Cho cơ sở dữ liệu của bạn một cái tên. db-for-lambda Master username: ghi nhớ username này cho phần sau của bài lab. Credentials management: Chọn Self managed. Sau đó nhập mật khẩu cho cơ sở dữ liệu của bạn. 6.Kéo xuống đến Additional configuration. Ở phần Initial database name. Cho cơ sở dữ liệu mình một cái tên, ghi nhớ cái tên này cho phần tiếp theo của bài lab. myDB\nCuối cùng, ấn vào Create Database. Rồi đợi cho đến khi trạng thái của cơ sở dữ liệu của mình là \u0026ldquo;Available\u0026rdquo;. "
 },
 {
-	"uri": "/",
+	"uri": "//localhost:1313/",
 	"title": "Truy cập tài nguyên AWS qua hàm Lambda",
 	"tags": [],
 	"description": "",
 	"content": "Truy cập tài nguyên AWS qua Lambda Tổng quan Ở bài thực hành này, chúng ta sẽ tìm hiểu cách truy vấn vào tài nguyên cơ sở dữ liệu RDS sử dụng Lambda qua RDS Proxy. Sử dụng Simple Queue Service (Dịch vụ hàng đợi đơn giản) để gọi hàm Lambda ấy.\nLambda Lambda: Là dịch vụ tính toán phi máy chủ. Bạn chỉ cần nạp code vào Lambda và Lambda sẽ tự động giải quyết việc quản lý tài nguyên tính toán, dự trữ dung lượng,\u0026hellip; Và bạn chỉ cần phải trả phí cho thời gian dịch vụ Lambda xử lý tính toán, bạn sẽ không phải chi trả khi Lambda không được gọi.\nRDS Proxy RDS Proxy: Đứng trung gian giữa cơ sở dữ liệu RDS và Lambda. RDS Proxy có nhiệm vụ kiểm soát và quản lý các truy vấn vào cơ sở dữ liệu.\nSimple Queue Service Simple Queue Service (Dịch vụ hàng đợi đơn giản): Là dịch vụ giúp ta truyền, chứa và nhận các tin nhắn cho các bộ phận khác trong hệ thống. Chúng ta sẽ sử dụng SQS để gọi hàm Lambda.\nNội dung: Khởi tạo RDS Khởi tạo Lambda Khởi tạo SQS Kiểm tra kết quả Dọn dẹp tài nguyên "
 },
 {
-	"uri": "/2-lambda/2-add-lambda-code/",
+	"uri": "//localhost:1313/2-lambda/2-add-lambda-code/",
 	"title": "Add code into Lambda function",
 	"tags": [],
 	"description": "",
 	"content": "Thêm code vào hàm Lambda 1.Trong máy tính của bạn, tạo một thư mục mang tên lambda-package.\n2.Bật Visual Studio Code (Hoặc IDE nào bạn quen dùng), vào phần file và chọn Open Folder\n3.Chọn thư mục mình vừa mới tạo và ấn Select Folder\n4.Sau đó, tạo một tập tin lambda-function.py và một thư mục package.\n5.Trong tập tin lambda-function.py, chèn vào bên trong đoạn code này:\nimport json\rimport logging\rimport os\rimport sys\rimport pymysql\r# Các biến cần thiết để kết nối vào rds\ruser_name = os.environ[\u0026#39;USER_NAME\u0026#39;]\rpassword = os.environ[\u0026#39;PASSWORD\u0026#39;]\rrds_proxy_host = os.environ[\u0026#39;RDS_PROXY_HOST\u0026#39;]\rdb_name = os.environ[\u0026#39;DB_NAME\u0026#39;]\rlogger = logging.getLogger()\rlogger.setLevel(logging.INFO)\r#Kết nối vào RDS. Ta để bên ngoài lambda_handler để kết nối vào cơ sở dữ liệu được giữ\r#khi hàm này được gọi lại ở các lần tiếp theo\rtry:\rconn = pymysql.connect(host=rds_proxy_host, user=user_name, passwd=password, db=db_name, connect_timeout=5)\rexcept pymysql.MySQLError as e:\rlogger.error(\u0026#34;ERROR: Unexpected error: Could not connect to MySQL instance.\u0026#34;)\rlogger.error(e)\rsys.exit(1)\rlogger.info(\u0026#34;SUCCESS: Connection to RDS for MySQL instance succeeded\u0026#34;)\rdef lambda_handler(event, context):\r#Lambda lấy các thuộc tính trong JSON của tin nhắn đầu tiên của SQS\rmessage = event[\u0026#39;Records\u0026#39;][0][\u0026#39;body\u0026#39;]\rdata = json.loads(message)\rUserID = data[\u0026#39;UserID\u0026#39;]\rName = data[\u0026#39;Name\u0026#39;]\rPhone = data[\u0026#39;Phone\u0026#39;]\rBirthday = data[\u0026#39;Birthday\u0026#39;]\ruser_count = 0\rsql_string = \u0026#34;insert into User (UserID, Name, Phone, Birthday) values(%s, %s, %s, %s)\u0026#34;\rwith conn.cursor() as cursor:\r#Tạo một bảng người dùng nếu như chưa có trong cơ sở dữ liệu.\rcursor.execute(\u0026#34;\u0026#34;\u0026#34;\rcreate table if not exists User\r( UserID int NOT NULL, Name varchar(255) NOT NULL, Phone varchar(20), Birthday DATE, PRIMARY KEY (UserID))\r\u0026#34;\u0026#34;\u0026#34;)\r#Một record mới sẽ được thêm vào bảng.\rcursor.execute(sql_string, (UserID, Name, Phone, Birthday))\rconn.commit()\r#Sau đó sẽ lần lượt log ra những người dùng có trong bảng người dùng.\rcursor.execute(\u0026#34;select * from User\u0026#34;)\rlogger.info(\u0026#34;The following users have been added to the database:\u0026#34;)\rfor row in cursor:\ruser_count += 1\rlogger.info(row) conn.commit()\rreturn \u0026#34;Added %d users to RDS for MySQL table\u0026#34; %(user_count) Ở đoạn code trên, chúng ta sẽ lấy các credentials để truy cập vào RDS Proxy từ Enviroment variables(Biến môi trường) của Lambda. Để giữ an toàn hơn thì bạn có thể sử dụng dịch vụ AWS Secrect Manager để lưu trữ các credentials này.\n6.Để tải thư viện pymysql, nhập vào terminal:\npip install --target package pymysql Với \u0026ndash;target được dùng để khi tải thì thư viện sẽ vào thư muc package mới tạo.\n7.Vào thư mục package, lấy thư viện vừa mới tải và để ra ngoài như vầy (xóa thư mục package).\nRồi nén thư mục lambda-package thành một file .zip\n8.Quay lại AWS managmment console và chọn dịch vụ Lambda trong thanh tìm kiếm.\nVà chọn hàm Lambda được tạo ở phần trước.\n9.Trong code source:\nNhấn vào .zip file Chọn tập tin ném .zip mới tạo ở bước trước Ấn save 10.Sau khi xong, bố trí lại cấu trúc thư mục như vầy.\n"
 },
 {
-	"uri": "/2-lambda/",
+	"uri": "//localhost:1313/2-lambda/",
 	"title": "Create Lambda Function",
 	"tags": [],
 	"description": "",
 	"content": "Tạo hàm Lambda để chạy chức năng tạo người dùng Nội dung: Khởi tạo Lambda và RDS Proxy Thêm chức năng vào hàm Lambda Tạo vai trò IAM Cấu hình hàm Lambda Chạy thử "
 },
 {
-	"uri": "/2-lambda/3-iam-creation/",
+	"uri": "//localhost:1313/2-lambda/3-iam-creation/",
 	"title": "Create IAM Roles",
 	"tags": [],
 	"description": "",
 	"content": "Create IAM roles Trước khi chỉnh sửa cấu hình của hàm Lambda, chúng ta sẽ tạo một vai trò IAM cấp quyền sử dụng dịch vụ SQS và quyền sử dụng tài nguyên trong một VPC.\n1.Vào thanh tìm kiếm nhập vào dịch vụ IAM.\n2.Trong IAM:\nNhấn vào mục Roles Nhấn vào Create role 3.Trong Select trusted entity:\nChọn AWS Service nếu chưa chọn Trong Use Case, chọn dịch vụ Lambda Sau đó ấn vào Next 4.Ở trong Add permissions, chúng ta sẽ cấp vào vai trò của chúng ta hai quyền:\nAWSLambdaSQSQueueExecutionRole: Để cấp quyền sử dụng dịch vụ SQS. AWSLambdaVPCAccessExecutionRole: Để cấp quyền lambda sử dụng tài nguyên trong VPC. 5.Ở phần Role details:\nCung cấp một cái tên cho Role name. sqs-lambda-rds-role. Kéo xuống và xem lại các quyền mình đã cấp rồi ấn vào Create role "
 },
 {
-	"uri": "/3-sqs/",
+	"uri": "//localhost:1313/3-sqs/",
 	"title": "Create SQS",
 	"tags": [],
 	"description": "",
 	"content": "Create Simple Queue Service Chúng ta sẽ tạo một SQS đơn giản để có thể gọi hàm lambda và gửi thông tin người dùng.\n1.Nhập vào thanh tìm kiếm dịch vụ SQS\n2.Ở trong Amazon SQS ấn vào Create Queue\n3.Trong Create queue, ở Type chọn Standard Info và điền tên cho SQS. SQS-Lambda.\nGiữ nguyên các định dạng còn lại và ấn Create Queue\n4.Quay lại hàm Lambda, ấn vào Add Trigger\nTrong Trigger configuration, ở ô SQS queue chọn SQS mình vừa mới tạo. Giữ nguyên những thứ còn lại và ấn Add\n"
 },
 {
-	"uri": "/2-lambda/4-lambda-configuration/",
+	"uri": "//localhost:1313/2-lambda/4-lambda-configuration/",
 	"title": "Configurating Lambda Function",
 	"tags": [],
 	"description": "",
 	"content": "Configurating Lambda Function Bây giờ chúng ta sẽ quay lại hàm Lambda của chúng ta và bắt đầu chỉnh sửa cấu hình của Lambda để có thể chạy được chức năng của bài lab này.\n1.Sau khi quay lại hàm Lambda, kéo xuống Runtime settings và nhấn vào Edit.\nChỉnh Runtime thành Python 3.12 Trong Handler nhập lambda-function.lambda_handler để khi được gọi thì Lambda sẽ chạy tập tin lambda-function với hàm lambda_handler. Nhấn vào Save 2.Vào Configuration, nhấn vào mục Enviroment variables và chọn Edit\nSau đó nhấn vào Add enviroment variable để thêm bốn biến môi trường với các giá trị sau:\nDB_NAME: Tên cơ sở dữ liệu bạn đưa. PASSWORD: Mật khẩu của cơ sở dữ liệu RDS_PROXY_HOST: Dán vào Proxies endpoint mà bạn đã lưu trữ ở phần trước của bài thực hành. USER_NAME: ghi vào master username của cơ sở dữ liệu. Key của bốn khóa này phải chính xác với bên code do chúng case-sensitive (phân biệt sự khác nhau giữa viết thường với viết hoa). Nếu không thì sẽ không hoạt động.\nRồi cuối cùng nhấn vào Save\n3.Cũng ở trong Configuration, chọn mục Permission. Ở phần Execution role, nhấn vào Edit\nỞ phần Existing role chọn role mà chúng ta đã tạo ở phần trước, để các giá trị còn lại y nguyên rồi ấn Save\n"
 },
 {
-	"uri": "/4-testing/",
+	"uri": "//localhost:1313/4-testing/",
 	"title": "Test the application",
 	"tags": [],
 	"description": "",
 	"content": "Test the application Chúng ta sẽ gửi một tin nhắn từ SQS, rồi sau đó sử dụng dịch vụ CloudWatch để kiểm tra tin nhắn có được gửi qua hay không.\n1.Vào SQS và nhấn Send and recieve messages\n2.Trong Send message, chèn JSON này vào ô Message body vầ nhấn vào Send message\n{\r\u0026#34;UserID\u0026#34;: 1002,\r\u0026#34;Name\u0026#34;: \u0026#34;Nguyen Tran\u0026#34;,\r\u0026#34;Phone\u0026#34;: \u0026#34;098732120\u0026#34;,\r\u0026#34;Birthday\u0026#34;: \u0026#34;2004-03-03\u0026#34;\r} 3.Để kiểm tra xem tin nhắn có được gửi qua thành công hay không. Nhập vào thanh tìm kiếm dịch vụ CloudWatch\n4.Trong CloudWatch, vào mục Log groups và chọn log group của chức năng Lambda của mình.\n5.Trong Log Streams chọn log mới nhất được tạo.\nNếu thành công thì bạn sẽ thấy thông tin người dùng sẽ hiện ở trên log.\n"
 },
 {
-	"uri": "/2-lambda/5-test-function/",
+	"uri": "//localhost:1313/2-lambda/5-test-function/",
 	"title": "Test Lambda Function",
 	"tags": [],
 	"description": "",
 	"content": "Test Lambda Function Chúng ta sẽ chạy thử để xem hàm có hoạt động như mong đợi hay không.\n1.Vào Test, chọn Create new event và nhập vào tên của bài kiểm tra này.testAddUser\n2.Ở Event JSON, chèn vào đoạn JSON mẫu này:\n{\r\u0026#34;Records\u0026#34;: [\r{\r\u0026#34;messageId\u0026#34;: \u0026#34;059f36b4-87a3-44ab-83d2-661975830a7d\u0026#34;,\r\u0026#34;receiptHandle\u0026#34;: \u0026#34;AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...\u0026#34;,\r\u0026#34;body\u0026#34;: \u0026#34;{\\n \\\u0026#34;UserID\\\u0026#34;: 1021,\\n \\\u0026#34;Name\\\u0026#34;: \\\u0026#34;Nguyen Van A\\\u0026#34;,\\n \\\u0026#34;Phone\\\u0026#34;: \\\u0026#34;0987443221\\\u0026#34;,\\n \\\u0026#34;Birthday\\\u0026#34;: \\\u0026#34;2000-01-01\\\u0026#34;\\n}\u0026#34;,\r\u0026#34;attributes\u0026#34;: {\r\u0026#34;ApproximateReceiveCount\u0026#34;: \u0026#34;1\u0026#34;,\r\u0026#34;SentTimestamp\u0026#34;: \u0026#34;1545082649183\u0026#34;,\r\u0026#34;SenderId\u0026#34;: \u0026#34;AIDAIENQZJOLO23YVJ4VO\u0026#34;,\r\u0026#34;ApproximateFirstReceiveTimestamp\u0026#34;: \u0026#34;1545082649185\u0026#34;\r},\r\u0026#34;messageAttributes\u0026#34;: {},\r\u0026#34;md5OfBody\u0026#34;: \u0026#34;e4e68fb7bd0e697a0ae8f1bb342846b3\u0026#34;,\r\u0026#34;eventSource\u0026#34;: \u0026#34;aws:sqs\u0026#34;,\r\u0026#34;eventSourceARN\u0026#34;: \u0026#34;arn:aws:sqs:us-west-2:123456789012:my-queue\u0026#34;,\r\u0026#34;awsRegion\u0026#34;: \u0026#34;ap-southeast-1\u0026#34;\r}\r]\r} Điều chỉnh body và/hoặc awsRegion phù hợp với bài lab của mình.\n3.Kéo lên và nhấn Save rồi nhấn Test\n4.Nếu mọi thứ thành công thì sẽ hiện lên thông báo này:\n"
 },
 {
-	"uri": "/5-clean-up/",
+	"uri": "//localhost:1313/5-clean-up/",
 	"title": "Resource Cleaning",
 	"tags": [],
 	"description": "",
 	"content": "Resource Cleaning 1.Vào SQS\nChọn SQS của mình và ấn Delete Điền confirm vào trong ô và ấn Delete 2.Vào Lambda\nChọn hàm Lambda của mình và ấn Delete Điền delete vào trong ô và ấn Delete 3.Cũng ở trong Lambda, chọn mục Event source mappings\nChọn hàm Event source mappings của mình và ấn Delete Điền confirm vào trong ô và ấn Delete 4.Vào RDS, ở mục database\nTrong ô Action, chọn Delete Bỏ lựa chọn *Retain automated backups Bỏ lựa chọn Create final snapshot Chọn I acknowledge that upon instance deletion, automated backup, including system snapshot and point-in-time recovery, will no longer be available. Điền delete me vào trong ô và ấn Delete 5.Cũng ở trong RDS, ở mục Proxies:\nTrong ô Action, chọn Delete Điền delete me và nhấn vào Delete 6.Điền vào trong thanh tìm kiếm và chọn chức năng Security Group của EC2. Vào mục Security Groups\nỞ mỗi Security Group mà đã được tạo, xóa các inbound rules và outbound rules của mỗi Security Group\nSau đó chọn các Security Group ấy, ấn vào dropdown Action và chọn Delete\nĐiền delete vảo trong ô và nhấn Delete.\n7.Vào IAM, ở mục Roles:\nIAM role mình đã tạo, rồi ấn Delete\nĐiền tên của role mình đã tạo vào ô và nhấn Delete\n8.Cuối cùng, vào CloudWatch, ở mục Log groups\nChọn các log group đã được tạo trong bài thực hành, vào dropdown Action và ấn Delete log group(s)\nNhấn Delete\n"
 },
 {
-	"uri": "/categories/",
+	"uri": "//localhost:1313/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "/tags/",
+	"uri": "//localhost:1313/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",
