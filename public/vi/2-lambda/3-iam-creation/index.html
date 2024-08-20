@@ -12,21 +12,21 @@
     <title>Tạo vai trò IAM :: Truy cập vào cơ sở dữ liệu RDS qua Lambda</title>
 
     
-    <link href="/css/nucleus.css?1724116649" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1724116649" rel="stylesheet">
-    <link href="/css/hybrid.css?1724116649" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1724116649" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1724116649" rel="stylesheet">
-    <link href="/css/auto-complete.css?1724116649" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1724116649" rel="stylesheet">
-    <link href="/css/theme.css?1724116649" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1724116649" rel="stylesheet">
+    <link href="/css/nucleus.css?1724117765" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1724117765" rel="stylesheet">
+    <link href="/css/hybrid.css?1724117765" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1724117765" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1724117765" rel="stylesheet">
+    <link href="/css/auto-complete.css?1724117765" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1724117765" rel="stylesheet">
+    <link href="/css/theme.css?1724117765" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1724117765" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1724116649" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1724117765" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1724116649"></script>
+    <script src="/js/jquery-3.3.1.min.js?1724117765"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1724116649"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1724116649"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1724117765"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1724117765"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1724116649"></script>
+<script type="text/javascript" src="/js/search.js?1724117765"></script>
 
     
   </div>
@@ -547,34 +547,34 @@
 	<h4 id="create-iam-roles">Create IAM roles</h4>
 <p>Trước khi chỉnh sửa cấu hình của hàm Lambda, chúng ta sẽ tạo một vai trò IAM cấp quyền sử dụng dịch vụ <strong>SQS</strong> và quyền sử dụng tài nguyên trong một VPC.</p>
 <p>1.Vào thanh tìm kiếm nhập vào dịch vụ <strong>IAM</strong>.</p>
-<p><img alt="IAM roles creation" src="../images/2/2.3.1.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.1.png"></p>
 <p>2.Trong <strong>IAM</strong>:</p>
 <ul>
 <li>Nhấn vào mục <strong>Roles</strong></li>
 <li>Nhấn vào <strong>Create role</strong></li>
 </ul>
-<p><img alt="IAM roles creation" src="../images/2/2.3.2.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.2.png"></p>
 <p>3.Trong <strong>Select trusted entity</strong>:</p>
 <ul>
 <li>Chọn <strong>AWS Service</strong> nếu chưa chọn</li>
 <li>Trong <strong>Use Case</strong>, chọn dịch vụ <strong>Lambda</strong></li>
 <li>Sau đó ấn vào <strong>Next</strong></li>
 </ul>
-<p><img alt="IAM roles creation" src="../images/2/2.3.3.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.3.png"></p>
 <p>4.Ở trong <strong>Add permissions</strong>, chúng ta sẽ cấp vào vai trò của chúng ta hai quyền:</p>
 <ul>
 <li><code>AWSLambdaSQSQueueExecutionRole</code>: Để cấp quyền sử dụng dịch vụ <strong>SQS</strong>.</li>
 <li><code>AWSLambdaVPCAccessExecutionRole</code>: Để cấp quyền lambda sử dụng tài nguyên trong VPC.</li>
 </ul>
-<p><img alt="IAM roles creation" src="../images/2/2.3.4.png"></p>
-<p><img alt="IAM roles creation" src="../images/2/2.3.5.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.4.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.5.png"></p>
 <p>5.Ở phần <strong>Role details</strong>:</p>
 <ul>
 <li>Cung cấp một cái tên cho <strong>Role name</strong>. <code>sqs-lambda-rds-role</code>.</li>
 <li>Kéo xuống và xem lại các quyền mình đã cấp rồi ấn vào <strong>Create role</strong></li>
 </ul>
-<p><img alt="IAM roles creation" src="../images/2/2.3.6.png"></p>
-<p><img alt="IAM roles creation" src="../images/2/2.3.7.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.6.png"></p>
+<p><img alt="IAM roles creation" src="../../images/2/2.3.7.png"></p>
 
 
 
@@ -805,19 +805,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1724116649"></script>
-    <script src="/js/perfect-scrollbar.min.js?1724116649"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1724116649"></script>
-    <script src="/js/jquery.sticky.js?1724116649"></script>
-    <script src="/js/featherlight.min.js?1724116649"></script>
-    <script src="/js/highlight.pack.js?1724116649"></script>
+    <script src="/js/clipboard.min.js?1724117765"></script>
+    <script src="/js/perfect-scrollbar.min.js?1724117765"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1724117765"></script>
+    <script src="/js/jquery.sticky.js?1724117765"></script>
+    <script src="/js/featherlight.min.js?1724117765"></script>
+    <script src="/js/highlight.pack.js?1724117765"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1724116649"></script>
-    <script src="/js/learn.js?1724116649"></script>
-    <script src="/js/hugo-learn.js?1724116649"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1724117765"></script>
+    <script src="/js/learn.js?1724117765"></script>
+    <script src="/js/hugo-learn.js?1724117765"></script>
 
-    <link href="/mermaid/mermaid.css?1724116649" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1724116649"></script>
+    <link href="/mermaid/mermaid.css?1724117765" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1724117765"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

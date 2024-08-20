@@ -12,21 +12,21 @@
     <title>Create Lambda And RDS Proxy :: Truy cập vào cơ sở dữ liệu RDS qua Lambda</title>
 
     
-    <link href="/css/nucleus.css?1724116649" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1724116649" rel="stylesheet">
-    <link href="/css/hybrid.css?1724116649" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1724116649" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1724116649" rel="stylesheet">
-    <link href="/css/auto-complete.css?1724116649" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1724116649" rel="stylesheet">
-    <link href="/css/theme.css?1724116649" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1724116649" rel="stylesheet">
+    <link href="/css/nucleus.css?1724117765" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1724117765" rel="stylesheet">
+    <link href="/css/hybrid.css?1724117765" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1724117765" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1724117765" rel="stylesheet">
+    <link href="/css/auto-complete.css?1724117765" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1724117765" rel="stylesheet">
+    <link href="/css/theme.css?1724117765" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1724117765" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1724116649" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1724117765" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1724116649"></script>
+    <script src="/js/jquery-3.3.1.min.js?1724117765"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1724116649"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1724116649"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1724117765"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1724117765"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1724116649"></script>
+<script type="text/javascript" src="/js/search.js?1724117765"></script>
 
     
   </div>
@@ -546,13 +546,13 @@
 
 	<h4 id="thêm-code-vào-hàm-lambda">Thêm code vào hàm Lambda</h4>
 <p>1.Trong máy tính của bạn, tạo một thư mục mang tên <code>lambda-package</code>.</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.1.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.1.png"></p>
 <p>2.Bật <strong>Visual Studio Code</strong> (Hoặc IDE nào bạn quen dùng), vào phần <strong>file</strong> và chọn <strong>Open Folder</strong></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.2.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.2.png"></p>
 <p>3.Chọn thư mục mình vừa mới tạo và ấn <strong>Select Folder</strong></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.3.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.3.png"></p>
 <p>4.Sau đó, tạo một tập tin <code>lambda-function.py</code> và một thư mục <code>package</code>.</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.4.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.4.png"></p>
 <p>5.Trong tập tin <code>lambda-function.py</code>, chèn vào bên trong đoạn code này:</p>
 <pre tabindex="0"><code>import json
 import logging
@@ -614,7 +614,7 @@ def lambda_handler(event, context):
     conn.commit()
 
     return &#34;Added %d users to RDS for MySQL table&#34; %(user_count)
-</code></pre><p><img alt="Add code into lambda function" src="../images/2/2.2.5.png"></p>
+</code></pre><p><img alt="Add code into lambda function" src="../../images/2/2.2.5.png"></p>
 
 <div class="notices note" ><p>Ở đoạn code trên, chúng ta sẽ lấy các credentials để truy cập vào RDS Proxy từ <strong>Enviroment variables</strong>(<em>Biến môi trường</em>) của Lambda. Để giữ an toàn hơn thì bạn có thể sử dụng dịch vụ <strong>AWS Secrect Manager</strong> để lưu trữ các credentials này.</p>
 </div>
@@ -622,29 +622,29 @@ def lambda_handler(event, context):
 <p>6.Để tải thư viện pymysql, nhập vào terminal:</p>
 <pre tabindex="0"><code>pip install --target package pymysql
 </code></pre><p>Với <em>&ndash;target</em> được dùng để khi tải thì thư viện sẽ vào thư muc package mới tạo.</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.6.png"></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.7.png"></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.8.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.6.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.7.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.8.png"></p>
 <p>7.Vào thư mục package, lấy thư viện vừa mới tải và để ra ngoài như vầy (xóa thư mục package).</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.11.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.11.png"></p>
 <p>Rồi nén thư mục lambda-package thành một file .zip</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.12.png"></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.13.png"></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.14.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.12.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.13.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.14.png"></p>
 <p>8.Quay lại <strong>AWS managmment console</strong> và chọn dịch vụ <strong>Lambda</strong> trong thanh tìm kiếm.</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.15.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.15.png"></p>
 <p>Và chọn hàm Lambda được tạo ở phần trước.</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.16.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.16.png"></p>
 <p>9.Trong <strong>code source</strong>:</p>
 <ul>
 <li>Nhấn vào <strong>.zip file</strong></li>
 <li>Chọn tập tin ném .zip mới tạo ở bước trước</li>
 <li>Ấn save</li>
 </ul>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.17.png"></p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.18.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.17.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.18.png"></p>
 <p>10.Sau khi xong, bố trí lại cấu trúc thư mục như vầy.</p>
-<p><img alt="Add code into lambda function" src="../images/2/2.2.21.png"></p>
+<p><img alt="Add code into lambda function" src="../../images/2/2.2.21.png"></p>
 
 
 
@@ -875,19 +875,19 @@ def lambda_handler(event, context):
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1724116649"></script>
-    <script src="/js/perfect-scrollbar.min.js?1724116649"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1724116649"></script>
-    <script src="/js/jquery.sticky.js?1724116649"></script>
-    <script src="/js/featherlight.min.js?1724116649"></script>
-    <script src="/js/highlight.pack.js?1724116649"></script>
+    <script src="/js/clipboard.min.js?1724117765"></script>
+    <script src="/js/perfect-scrollbar.min.js?1724117765"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1724117765"></script>
+    <script src="/js/jquery.sticky.js?1724117765"></script>
+    <script src="/js/featherlight.min.js?1724117765"></script>
+    <script src="/js/highlight.pack.js?1724117765"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1724116649"></script>
-    <script src="/js/learn.js?1724116649"></script>
-    <script src="/js/hugo-learn.js?1724116649"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1724117765"></script>
+    <script src="/js/learn.js?1724117765"></script>
+    <script src="/js/hugo-learn.js?1724117765"></script>
 
-    <link href="/mermaid/mermaid.css?1724116649" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1724116649"></script>
+    <link href="/mermaid/mermaid.css?1724117765" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1724117765"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
