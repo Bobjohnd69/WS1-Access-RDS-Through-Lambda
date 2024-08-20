@@ -10,11 +10,11 @@ pre = "<b>2. </b>"
 
 1.Trong máy tính của bạn, tạo một thư mục mang tên `lambda-package`.
 
-![Add code into lambda function](../../images/2/2.2.1.png)
+![Add code into lambda function](../../../images/2/2.2.1.png)
 
 2.Bật **Visual Studio Code** (Hoặc IDE nào bạn quen dùng), vào phần **file** và chọn **Open Folder**
 
-![Add code into lambda function](../images/2/2.2.2.png)
+![Add code into lambda function](../../../images/2/2.2.2.png)
 
 3.Chọn thư mục mình vừa mới tạo và ấn **Select Folder**
 
@@ -22,7 +22,7 @@ pre = "<b>2. </b>"
 
 4.Sau đó, tạo một tập tin `lambda-function.py` và một thư mục `package`.
 
-![Add code into lambda function](../../../../images/2/2.2.4.png)
+![Add code into lambda function](../../../images/2/2.2.4.png)
 
 5.Trong tập tin `lambda-function.py`, chèn vào bên trong đoạn code này:
 
@@ -88,7 +88,7 @@ def lambda_handler(event, context):
 
     return "Added %d users to RDS for MySQL table" %(user_count)
 ```
-![Add code into lambda function](../../images/2/2.2.5.png)
+![Add code into lambda function](../../../images/2/2.2.5.png)
 
 {{% notice note %}}
 Ở đoạn code trên, chúng ta sẽ lấy các credentials để truy cập vào RDS Proxy từ **Enviroment variables**(*Biến môi trường*) của Lambda. Để giữ an toàn hơn thì bạn có thể sử dụng dịch vụ **AWS Secrect Manager** để lưu trữ các credentials này.
@@ -100,42 +100,42 @@ pip install --target package pymysql
 ```
 Với *--target* được dùng để khi tải thì thư viện sẽ vào thư muc package mới tạo.
 
-![Add code into lambda function](../../images/2/2.2.6.png)
+![Add code into lambda function](../../../images/2/2.2.6.png)
 
-![Add code into lambda function](../../images/2/2.2.7.png)
+![Add code into lambda function](../../../images/2/2.2.7.png)
 
-![Add code into lambda function](../../images/2/2.2.8.png)
+![Add code into lambda function](../../../images/2/2.2.8.png)
 
 7.Vào thư mục package, lấy thư viện vừa mới tải và để ra ngoài như vầy (xóa thư mục package).
 
-![Add code into lambda function](../../images/2/2.2.11.png)
+![Add code into lambda function](../../../images/2/2.2.11.png)
 
 Rồi nén thư mục lambda-package thành một file .zip
 
-![Add code into lambda function](../../images/2/2.2.12.png)
+![Add code into lambda function](../../../images/2/2.2.12.png)
 
-![Add code into lambda function](../../images/2/2.2.13.png)
+![Add code into lambda function](../../../images/2/2.2.13.png)
 
-![Add code into lambda function](../../images/2/2.2.14.png)
+![Add code into lambda function](../../../images/2/2.2.14.png)
 
 8.Quay lại **AWS managmment console** và chọn dịch vụ **Lambda** trong thanh tìm kiếm.
 
-![Add code into lambda function](../../images/2/2.2.15.png)
+![Add code into lambda function](../../../images/2/2.2.15.png)
 
 Và chọn hàm Lambda được tạo ở phần trước.
 
-![Add code into lambda function](../../images/2/2.2.16.png)
+![Add code into lambda function](../../../images/2/2.2.16.png)
 
 9.Trong **code source**:
   - Nhấn vào **.zip file**
   - Chọn tập tin ném .zip mới tạo ở bước trước
   - Ấn save
 
-![Add code into lambda function](../../images/2/2.2.17.png)
+![Add code into lambda function](../../../images/2/2.2.17.png)
 
-![Add code into lambda function](../../images/2/2.2.18.png)
+![Add code into lambda function](../../../images/2/2.2.18.png)
 
 10.Sau khi xong, bố trí lại cấu trúc thư mục như vầy.
 
-![Add code into lambda function](../../images/2/2.2.21.png)
+![Add code into lambda function](../../../images/2/2.2.21.png)
 
