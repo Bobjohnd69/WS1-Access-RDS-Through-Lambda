@@ -9,7 +9,7 @@ chapter = false
 
 #### Tổng quan
 
-Ở bài thực hành này, chúng ta sẽ tìm hiểu cách truy vấn vào tài nguyên cơ sở dữ liệu RDS sử dụng **Lambda** qua **RDS Proxy**. Sử dụng **Simple Queue Service** (*Dịch vụ hàng đợi đơn giản*) để gọi hàm Lambda ấy.
+Ở bài thực hành này, chúng ta sẽ tìm hiểu cách truy vấn vào tài nguyên RDS sử dụng **Lambda** và **RDS Proxy**. Và chúng ta sẽ sử dụng **Simple Queue Service** (*Dịch vụ hàng đợi đơn giản*) để gọi hàm Lambda ấy.
 
 
 #### Lambda
