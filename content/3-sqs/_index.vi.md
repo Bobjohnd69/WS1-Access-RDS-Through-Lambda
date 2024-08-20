@@ -10,8 +10,6 @@ pre = "<b>3. </b>"
 
 Chúng ta sẽ tạo một **SQS** đơn giản để có thể gọi hàm lambda và gửi thông tin người dùng.
 
-Chúng ta sẽ tạo một **SQS** đơn giản để có thể gọi hàm lambda và gửi thông tin người dùng.
-
 1.Nhập vào thanh tìm kiếm dịch vụ **SQS**
 
   ![Create SQS](../images/3/3.1.png)
