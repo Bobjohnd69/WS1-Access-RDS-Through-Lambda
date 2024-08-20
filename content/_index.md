@@ -21,7 +21,7 @@ chapter = false
 #### Simple Queue Service
 **Simple Queue Service** (*Dịch vụ hàng đợi đơn giản*): Là dịch vụ giúp ta truyền, chứa và nhận các tin nhắn cho các bộ phận khác trong hệ thống. Chúng ta sẽ sử dụng **SQS** để gọi hàm Lambda.
 
-  ![Diagram](/images/0/0.1.png)
+  ![Diagram](../../images/0/0.1.png)
 
 #### Nội dung:
 1. [Khởi tạo RDS](1-rds)
