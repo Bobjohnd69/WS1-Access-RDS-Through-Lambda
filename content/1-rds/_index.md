@@ -26,7 +26,7 @@ pre = "<b>1. </b>"
 
 
 {{% notice note %}}
-Khi tạo một cơ sỏ dữ liệu production. thì bạn nên lựa chọn "Production" và lực chọn "Multi-AZ DB instance" để bảo vệ dữ liệu của bạn phòng khi cơ sở dữ liệu chinh bị mất.
+Khi tạo một cơ sở dữ liệu production. thì bạn nên lựa chọn "Production" và lực chọn "Multi-AZ DB instance" để bảo vệ dữ liệu của bạn phòng khi cơ sở dữ liệu chính bị mất.
 {{% /notice %}}
 
 5.Ở phần Settings, chúng ta sẽ làm những việc như sau:
