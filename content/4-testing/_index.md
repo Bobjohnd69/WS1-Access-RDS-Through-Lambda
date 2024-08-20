@@ -26,21 +26,21 @@ Chúng ta sẽ gửi một tin nhắn từ **SQS**, rồi sau đó sử dụng d
 }
 ```
 
-  ![Test Application](../../../../images/4/4.2.png)
+  ![Test Application](../images/4/4.2.png)
 
 3.Để kiểm tra xem tin nhắn có được gửi qua thành công hay không. Nhập vào thanh tìm kiếm dịch vụ **CloudWatch**
 
-  ![Test Application](../../../../images/4/4.3.png)
+  ![Test Application](../images/4/4.3.png)
 
 4.Trong **CloudWatch**, vào mục **Log groups** và chọn log group của chức năng **Lambda** của mình.
 
-  ![Test Application](../../../../images/4/4.4.png)
+  ![Test Application](../images/4/4.4.png)
 
 5.Trong **Log Streams** chọn log mới nhất được tạo.
   
-  ![Test Application](../../../../images/4/4.5.png)
+  ![Test Application](../images/4/4.5.png)
   
   Nếu thành công thì bạn sẽ thấy thông tin người dùng sẽ hiện ở trên log.
 
-  ![Test Application](../../../../images/4/4.6.png)
+  ![Test Application](../images/4/4.6.png)
 

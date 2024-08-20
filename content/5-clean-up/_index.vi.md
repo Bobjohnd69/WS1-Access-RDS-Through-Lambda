@@ -20,7 +20,7 @@ pre = "<b>5. </b>"
   - Chọn hàm **Lambda** của mình và ấn **Delete**
   - Điền *delete* vào trong ô và ấn **Delete**
 
-  ![Resource cleaning](../images/5/5.3.png)
+  ![Resource cleaning](../static/images/5/5.3.png)
 
   ![Resource cleaning](../images/5/5.4.png)
 
