@@ -1,9 +1,9 @@
-+++
+---
 title = "RDS Access through Lambda"
 date = 2024
 weight = 1
 chapter = false
-+++
+---
 
 # RDS Access through Lambda
 
@@ -21,7 +21,7 @@ chapter = false
 #### Simple Queue Service
 **Simple Queue Service** (*Dịch vụ hàng đợi đơn giản*): Là dịch vụ giúp ta truyền, chứa và nhận các tin nhắn cho các bộ phận khác trong hệ thống. Chúng ta sẽ sử dụng **SQS** để gọi hàm Lambda.
 
-  ![Diagram](/images/0/0.1.png)
+  ![Diagram](/WS1-Access-RDS-Through-Lambda/images/0/0.1.png)
 
 #### Nội dung:
 1. [Khởi tạo RDS](1-rds)
