@@ -1,4 +1,4 @@
-BaseURL = "https://bobjohnd69.github.io/WS1-Access-RDS-Through-Lambda/"
+baseURL = "https://bobjohnd69.github.io/WS1-Access-RDS-Through-Lambda/"
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 
